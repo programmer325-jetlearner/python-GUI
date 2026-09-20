@@ -7,6 +7,34 @@ root.geometry("500x500+500+150")
 root.title("word jumble")
 root.configure(background="#50A6F3")
 
+answers=["building","icecream","vehicle","truck","crayon","animal","crystal","donut","milk","baby","place","brain"]
+words=["dnbligiu","riacecme","evhceli","ctrku","ncayor","amanil","csyralt","ndotu","imkl","yabb","pcale","ibnar"]
+
+score_text=""
+score=0
+l=Label(root)
+num=random.randrange(0,len(words),1)
+q_count=0
+
+def default():
+    global num, words
+    jumble_lbl.config(words[num])
+def reset():
+    global num, words
+    num=random.randrange(0,len(words),1)
+    jumble_lbl.config(words[num])
+    input_box.delete(0, END)
+def check_ans():
+    global l, score,score_text,num,q_count,words,answers
+    q_count+=1
+    ans=input_box.get()
+    if ans==answers[num]:
+        tkinter.messagebox.showinfo("congratulations","YOU ARE CORRECT!!")
+        score+=1
+    else:
+        tkinter.messagebox.showerror("sorry","you have got the wrong answer")
+
+
 
 heading_lbl=Label(root,text="JUMBLE WORD GAME",background="#50A6F3",foreground="#1E382B",font=("Verdana",30,"bold"))
 heading_lbl.pack(pady=5)
